@@ -19,7 +19,7 @@ for _ in range(0, t):
 	else:
 		if dist == (r1-r2)**2:
 			print(1)
-		elif dist > (r1-r2)**2:
+		elif dist < (r1-r2)**2:
 			print(0)
 		else:
 			print(2)
