@@ -57,22 +57,17 @@ for _ in range(int(sys.stdin.readline().rstrip())):
                     break
         else:
             i += 1
-    check = []
-    mod_sum = 0
-    for i in mod:
-        mod_sum += i
-    cnt = 0
-    i = 1
-    while True:
-        if 0 < mod_sum - i < i:
-            max_re = mod_sum - i - cnt
-            if max_re < 1:
-                max_re = 1
-            i += max_re
-            break
-        mod_sum -= i
-        cnt += 1
-        i += 1
-        if mod_sum == 0:
-            break
-    print(i)
+    for i in range(1, len(mod)):
+        if mod[i] % 2 == 0:
+            prt = -1
+        else:
+            prt = 0
+        if mod[i - 1] < int(mod[i] / 2) + prt:
+            tar = mod.pop(i)
+            if i == len(mod):
+                mod.append(int(tar / 2) + prt)
+                mod.append(int(tar / 2) + 1)
+            else:
+                mod.insert(i, int(tar / 2) + prt)
+                mod.insert(i + 1, int(tar / 2) + 1)
+    print(max(mod) + 1)
